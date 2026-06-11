@@ -2,12 +2,15 @@
 
 import { useState } from "react"
 import { Button } from "@/components/ui/button";
+import { Eye, EyeOff } from "lucide-react"
 
 export default function LoginForm() {
     const [username, setUsername] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+
     const [isLogin, setIsLogin] = useState(false)
+    const [showPassword, setShowPassword] = useState(false)
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault()
@@ -66,13 +69,24 @@ export default function LoginForm() {
 
                 <div className="flex flex-col gap-1 mb-4">
                     <label className="text-black">Password</label>
-                    <input
-                        type="password"
-                        placeholder="******"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        className="w-full mt-2 px-3 py-2 rounded-md border border-gray-300"
-                    />
+
+                    <div className="relative">
+                        <input
+                            type={showPassword ? "text" : "password"}
+                            placeholder="******"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            className="w-full mt-2 px-3 py-2 pr-10 rounded-md border border-gray-300"
+                        />
+
+                        <button
+                            type="button"
+                            onClick={() => setShowPassword(!showPassword)}
+                            className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 cursor-pointer"
+                        >
+                            {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                        </button>
+                    </div>
                 </div>
 
                 <Button className="bg-[#2A14B4] w-full py-5">
