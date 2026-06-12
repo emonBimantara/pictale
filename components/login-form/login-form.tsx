@@ -4,7 +4,7 @@ import { useState } from "react"
 
 import { Button } from "@/components/ui/button"
 import { Eye, EyeOff } from "lucide-react"
-import { useAuth } from "@/app/hook/use-auth"
+import { useAuth } from "@/hook/use-auth"
 
 export default function LoginForm() {
     const [isLogin, setIsLogin] = useState(true)
@@ -111,7 +111,7 @@ export default function LoginForm() {
                     </div>
                 </div>
 
-                <Button type="submit" disabled={isLoading} className="bg-[#2A14B4] w-full py-5 text-white">
+                <Button type="submit" disabled={isLoading} className="bg-[#2A14B4] hover:bg-[#1f0f8f] transition w-full py-5 text-white">
                     {isLoading ? (
                         <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
                     ) : (

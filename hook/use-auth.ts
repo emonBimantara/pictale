@@ -32,7 +32,7 @@ export function useAuth() {
                 const token = respData.loginResult?.token
                 document.cookie = `token=${token}; path=/; max-age=86400; SameSite=Strict`
 
-                router.push('/')
+                router.push('/home')
                 router.refresh()
             }
         } catch (error) {
