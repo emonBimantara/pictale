@@ -1,3 +1,4 @@
+import { getRelativeTime } from "@/app/utils/date";
 import { User } from "lucide-react";
 
 interface RecentlyCreatorProps {
@@ -26,7 +27,7 @@ export default function RecentlyCreator({ stories }: RecentlyCreatorProps) {
                         <div>
                             <p className="font-semibold text-md text-black">{creator.name}</p>
                             <p className="text-xs text-[#777586]">
-                                {new Date(creator.createdAt).toLocaleDateString('id-ID')}
+                                {getRelativeTime(creator.createdAt)}
                             </p>
                         </div>
                     </div>

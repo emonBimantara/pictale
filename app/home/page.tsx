@@ -29,12 +29,19 @@ export default async function Home() {
                     PicTale
                 </h1>
 
-                <Link href="/logout">
-                    <Button className="bg-red-600 hover:bg-red-700 transition w-35 py-5 text-white text-md cursor-pointer">
-                        Logout
-                    </Button>
-                </Link>
+                <div className="flex items-center gap-2">
+                    <Link href="/logout">
+                        <Button className="bg-red-600 hover:bg-red-700 transition py-5 text-white text-md cursor-pointer">
+                            Logout
+                        </Button>
+                    </Link>
 
+                    <Link href="/create" className="lg:hidden">
+                        <Button className="bg-[#2A14B4] hover:bg-[#1f0f8f] transition py-5 text-white text-md cursor-pointer">
+                            + Create
+                        </Button>
+                    </Link>
+                </div>
             </nav>
 
             <div className="flex gap-5 p-3">
@@ -52,7 +59,7 @@ export default async function Home() {
 
                 <div className="hidden lg:block">
                     <WelcomeCard />
-                    <RecentlyCreator stories={stories}/>
+                    <RecentlyCreator stories={stories} />
                 </div>
 
             </div>

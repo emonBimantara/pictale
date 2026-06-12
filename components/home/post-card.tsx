@@ -1,4 +1,5 @@
 import { User, Bookmark, Heart } from "lucide-react"
+import { getRelativeTime } from "@/app/utils/date";
 
 interface PostCardProps {
     storyData: {
@@ -18,7 +19,7 @@ export default function PostCard({ storyData }: PostCardProps) {
                 <div>
                     <p className="font-semibold text-md ">{storyData.name}</p>
                     <p className="text-md text-[#777586]">
-                        {new Date(storyData.createdAt).toLocaleDateString('id-ID')}
+                        {getRelativeTime(storyData.createdAt)}
                     </p>
                 </div>
             </div>
