@@ -18,23 +18,22 @@ export function useAuth() {
         setSuccessMsg('')
 
         try {
-            const resp = await fetch('https://story-api.dicoding.dev/v1/login', {
+            const resp = await fetch('/api/login', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ email, password }),
             })
 
-            const respData = await resp.json()
+            const data = await resp.json()
 
-            if (respData.error) {
-                setErrorMsg(respData.message || 'Login failed. Please check your credentials.')
-            } else {
-                const token = respData.loginResult?.token
-                document.cookie = `token=${token}; path=/; max-age=86400`
-
-                router.push('/home')
-                router.refresh()
+            if (!resp.ok) {
+                setErrorMsg(data.message || 'Login failed')
+                return
             }
+
+            router.push('/home')
+            router.refresh()
+
         } catch (error) {
             setErrorMsg('Network error occurred while logging in. Please try again.')
             console.error(error)
