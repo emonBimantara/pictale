@@ -24,12 +24,19 @@ export function useAuth() {
                 body: JSON.stringify({ email, password }),
             })
 
-            const data = await resp.json()
-
             if (!resp.ok) {
-                setErrorMsg(data.message || 'Login failed')
+                let customError = 'Login failed'
+                try {
+                    const data = await resp.json()
+                    customError = data.message || customError
+                } catch (_) {
+                    customError = `Server Error (${resp.status})`
+                }
+                setErrorMsg(customError)
                 return
             }
+
+            const data = await resp.json()
 
             router.push('/home')
             router.refresh()
