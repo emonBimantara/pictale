@@ -18,7 +18,7 @@ export default function WelcomeCard() {
             <div className="flex flex-col gap-2 mt-auto">
 
                 <Link href="/create">
-                    <Button className="bg-[#2A14B4] hover:bg-[#1f0f8f] transition py-5 text-white text-md cursor-pointer">
+                    <Button className="bg-[#2A14B4] hover:bg-[#1f0f8f] transition py-5 text-white text-md cursor-pointer w-full">
                         + Create New Post
                     </Button>
                 </Link>

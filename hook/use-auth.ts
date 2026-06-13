@@ -30,7 +30,7 @@ export function useAuth() {
                 setErrorMsg(respData.message || 'Login failed. Please check your credentials.')
             } else {
                 const token = respData.loginResult?.token
-                document.cookie = `token=${token}; path=/; max-age=86400; SameSite=Lax; Secure`
+                document.cookie = `token=${token}; path=/; max-age=86400`
 
                 router.push('/home')
                 router.refresh()
