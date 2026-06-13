@@ -29,11 +29,11 @@ export default async function Home() {
                 </h1>
 
                 <div className="flex items-center gap-2">
-                    <Link href="/logout" prefetch={false}>
-                        <Button className="bg-red-600 hover:bg-red-700 transition py-5 text-white text-md cursor-pointer">
+                    <form action="/logout" method="POST">
+                        <Button type="submit" className="bg-red-600 hover:bg-red-700 transition py-5 text-white text-md cursor-pointer">
                             Logout
                         </Button>
-                    </Link>
+                    </form>
 
                     <Link href="/create" className="lg:hidden">
                         <Button className="bg-[#2A14B4] hover:bg-[#1f0f8f] transition py-5 text-white text-md cursor-pointer">
