@@ -1,5 +1,6 @@
 import { User, Bookmark, Heart, MapPin } from "lucide-react"
 import { getRelativeTime } from "@/app/utils/date";
+import { getLocation } from "@/app/utils/location";
 
 interface PostCardProps {
     storyData: {
@@ -13,36 +14,38 @@ interface PostCardProps {
     }
 }
 
-export default function PostCard({ storyData }: PostCardProps) {
+export default async function PostCard({ storyData }: PostCardProps) {
     const hasLocation = storyData.lat !== null
         && storyData.lon !== null
         && storyData.lat !== undefined
         && storyData.lon !== undefined;
 
+    let locationText = ""
+    if (hasLocation) {
+        locationText = await getLocation(storyData.lat!, storyData.lon!)
+    }
+
     return (
         <div className="m-3 rounded-lg border border-gray-300 lg:w-full">
-            <div className="p-5 flex gap-4 place-items-center">
-                <User size={26} className="text-gray-600" />
-                <div>
-                    <p className="font-semibold text-md ">{storyData.name}</p>
-                    <div className="flex items-center gap-2 text-xs text-[#777586] mt-0.5">
-                        <p>{getRelativeTime(storyData.createdAt)}</p>
-                        {hasLocation && (
-                            <>
-                                <span className="text-gray-400">•</span>
-                                <a
-                                    href={`https://www.google.com/maps/search/?api=1&query=${storyData.lat},${storyData.lon}`}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="flex items-center gap-0.5 text-[#2A14B4] hover:underline font-medium"
-                                >
-                                    <MapPin size={12} className="shrink-0" />
-                                    <span>Lihat Lokasi</span>
-                                </a>
-                            </>
-                        )}
+            <div className="p-5 flex gap-4 items-center justify-between">
+
+                <div className="flex gap-4 items-center">
+                    <User size={26} className="text-gray-600" />
+                    <div>
+                        <p className="font-semibold text-md ">{storyData.name}</p>
+                        <p className="text-xs text-[#777586] mt-0.5">
+                            {getRelativeTime(storyData.createdAt)}
+                        </p>
                     </div>
                 </div>
+
+                {hasLocation && (
+                    <div className="ml-auto flex items-center gap-1 text-xs text-[#626070] bg-gray-50 px-2.5 py-1.5 rounded-full font-medium">
+                        <MapPin size={12} className="shrink-0 text-gray-500" />
+                        <span className="truncate max-w-[120px] sm:max-w-[200px]">{locationText}</span>
+                    </div>
+                )}
+
             </div>
 
             <img
