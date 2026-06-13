@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button"
+import Link from "next/link"
 
 export default function WelcomeCard() {
     return (
@@ -15,9 +16,12 @@ export default function WelcomeCard() {
             </div>
 
             <div className="flex flex-col gap-2 mt-auto">
-                <Button className="bg-[#2A14B4] hover:bg-[#1f0f8f] transition py-5 text-white text-md cursor-pointer">
-                    + Create New Post
-                </Button>
+
+                <Link href="/create">
+                    <Button className="bg-[#2A14B4] hover:bg-[#1f0f8f] transition py-5 text-white text-md cursor-pointer">
+                        + Create New Post
+                    </Button>
+                </Link>
 
                 <p className="text-sm text-gray-500 text-center">
                     Express yourself freely

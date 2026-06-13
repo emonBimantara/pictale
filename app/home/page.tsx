@@ -22,9 +22,8 @@ export default async function Home() {
     }
 
     return (
-        <div>
+        <div className="bg-[#FBF8FF]">
             <nav className="p-5 flex items-center justify-between border-b">
-
                 <h1 className='text-[#2A14B4] font-bold text-4xl'>
                     PicTale
                 </h1>
