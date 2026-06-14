@@ -29,7 +29,7 @@ export default async function Home() {
                 </h1>
 
                 <div className="flex items-center gap-2">
-                    <form action="api/logout" method="POST">
+                    <form action="/api/logout" method="POST">
                         <Button type="submit" className="bg-red-600 hover:bg-red-700 transition py-5 text-white text-md cursor-pointer">
                             Logout
                         </Button>
