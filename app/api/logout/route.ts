@@ -1,9 +1,11 @@
-import { cookies } from "next/headers"
 import { NextResponse } from "next/server"
 
 export async function POST(req: Request) {
-    const cookieStore = await cookies()
-    cookieStore.delete("token")
+    const response = NextResponse.redirect(
+        new URL("/login", req.url),
+        303
+    )
+    response.cookies.delete("token")
 
-    return NextResponse.redirect(new URL("/login", req.url))
+    return response
 }
