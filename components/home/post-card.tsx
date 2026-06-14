@@ -26,7 +26,7 @@ export default async function PostCard({ storyData }: PostCardProps) {
     }
 
     return (
-        <div className="m-3 rounded-lg border border-gray-300 lg:w-full">
+        <div className="mb-2 rounded-lg border border-gray-300 lg:w-full">
             <div className="p-5 flex gap-4 items-center justify-between">
 
                 <div className="flex gap-4 items-center">
