@@ -7,6 +7,7 @@ import { uploadStory } from "@/service/upload"
 
 import { X, ImagePlus, MapPin, Loader2, Trash2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { Toaster, toast } from "sonner"
 
 import Link from "next/link"
 import { useRouter } from "next/navigation"
@@ -36,12 +37,12 @@ export default function CreateForm({ token }: CreateProps) {
         e.preventDefault()
 
         if (!imageFile) {
-            alert("Please select an image first.")
+            toast.error("Please select an image first.")
             return
         }
 
         if (!description.trim()) {
-            alert("Please add a description.")
+            toast.error("Please add a description.")
             return
         }
 
@@ -57,15 +58,15 @@ export default function CreateForm({ token }: CreateProps) {
             })
 
             if (result.error) {
-                alert(`Failed to post: ${result.message}`)
+                toast.error(result.message || "Failed to post.")
             } else {
-                alert("Story published successfully")
+                toast.success("Story published successfully")
                 router.push("/home")
                 router.refresh()
             }
         } catch (error) {
             console.error(error)
-            alert("A network error occurred. Please try again.")
+            toast.error("A network error occurred. Please try again.")
         } finally {
             setIsSubmitting(false)
         }
@@ -239,6 +240,7 @@ export default function CreateForm({ token }: CreateProps) {
                     )}
                 </Button>
             </form>
+            <Toaster richColors position="top-center" />
         </div>
     )
 }

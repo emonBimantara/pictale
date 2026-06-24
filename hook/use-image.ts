@@ -1,4 +1,5 @@
 import { useState, useRef } from "react"
+import { toast } from "sonner"
 
 export function useImage() {
     const [imageFile, setImageFile] = useState<File | null>(null)
@@ -14,7 +15,7 @@ export function useImage() {
         const file = e.target.files?.[0]
         if (file) {
             if (file.size > 1024 * 1024) {
-                alert("Ukuran kepanjangan, Bre! Maksimal cuma boleh 1MB.")
+                toast.error("Image size exceeds the 1 MB limit.")
                 return
             }
 

@@ -1,4 +1,5 @@
-import { User, Bookmark, Heart, MapPin } from "lucide-react"
+// components/home/post-card.tsx
+import { User, MapPin } from "lucide-react" // 🔥 Bersih dari Heart dan Bookmark
 import { getRelativeTime } from "@/app/utils/date";
 import { getLocation } from "@/app/utils/location";
 
@@ -26,47 +27,51 @@ export default async function PostCard({ storyData }: PostCardProps) {
     }
 
     return (
-        <div className="mb-2 rounded-lg border border-gray-300 lg:w-full">
-            <div className="p-5 flex gap-4 items-center justify-between">
-
-                <div className="flex gap-4 items-center">
-                    <User size={26} className="text-gray-600" />
+        <div className="w-full mb-5 bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden lg:w-full">
+            
+            {/* 1. HEADER SECTION (Author & Location) */}
+            <div className="p-4 flex gap-3 items-center justify-between bg-white">
+                <div className="flex gap-3 items-center">
+                    {/* Lingkaran Avatar Profile */}
+                    <div className="w-10 h-10 rounded-full bg-gray-50 border border-gray-100 flex items-center justify-center text-gray-500 shrink-0">
+                        <User size={20} />
+                    </div>
                     <div>
-                        <p className="font-semibold text-md ">{storyData.name}</p>
-                        <p className="text-xs text-[#777586] mt-0.5">
+                        <p className="font-semibold text-sm text-gray-800 leading-none">{storyData.name}</p>
+                        <p className="text-[11px] text-gray-400 mt-1">
                             {getRelativeTime(storyData.createdAt)}
                         </p>
                     </div>
                 </div>
 
+                {/* Badge Lokasi Berwarna Branded Ungu */}
                 {hasLocation && (
-                    <div className="ml-auto flex items-center gap-1 text-xs text-[#626070] bg-gray-50 px-2.5 py-1.5 rounded-full font-medium">
-                        <MapPin size={12} className="shrink-0 text-gray-500" />
-                        <span className="truncate max-w-[120px] sm:max-w-[200px]">{locationText}</span>
+                    <div className="ml-auto flex items-center gap-1 text-xs text-[#2A14B4] bg-[#F3EEFF] px-3 py-1.5 rounded-full font-medium max-w-[140px] sm:max-w-[220px]">
+                        <MapPin size={12} className="shrink-0 text-[#2A14B4]" />
+                        <span className="truncate">{locationText}</span>
                     </div>
                 )}
-
             </div>
 
-            <img
-                src={storyData.photoUrl}
-                alt={`Story by ${storyData.name}`}
-                className="w-full"
-            />
-
-            <div className="flex flex-col gap-3 py-5 px-3">
-                <div className="flex gap-2">
-                    <Heart size={24} className="text-gray-600" />
-                    <Bookmark size={24} className="text-gray-600" />
-                </div>
-
-                <div>
-                    <p>
-                        <span className="font-semibold mr-2">{storyData.name}</span>
-                        {storyData.description}
-                    </p>
-                </div>
+            {/* 2. IMAGE SECTION */}
+            {/* Diberi efek pembatas halus dan zoom in tipis saat di-hover */}
+            <div className="w-full bg-gray-50 overflow-hidden border-y border-gray-50 max-h-[480px] flex items-center justify-center">
+                <img
+                    src={storyData.photoUrl}
+                    alt={`Story by ${storyData.name}`}
+                    className="w-full h-full object-cover hover:scale-[1.01] transition-transform duration-500"
+                />
             </div>
+
+            {/* 3. CONTENT SECTION (Caption) */}
+            {/* Bersih total dari barisan tombol like/saved */}
+            <div className="p-4 bg-white">
+                <p className="text-gray-700 text-sm leading-relaxed text-justify">
+                    <span className="font-bold text-gray-900 mr-2">{storyData.name}</span>
+                    {storyData.description}
+                </p>
+            </div>
+
         </div>
     )
 }

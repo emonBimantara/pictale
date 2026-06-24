@@ -27,10 +27,6 @@ export default async function Home() {
             <nav className="p-5 flex items-center justify-between border-b bg-white sticky top-0 z-40">
                 <h1 className='text-[#2A14B4] font-bold text-4xl'>PicTale </h1>
                 <div className="flex items-center gap-6">
-                    <div className="hidden lg:flex items-center gap-6 font-medium text-gray-600">
-                        <Link href="/collection" className="hover:text-[#2A14B4] transition">Collection</Link>
-                    </div>
-
                     <form action="/api/logout" method="POST">
                         <Button type="submit" className="bg-red-600 hover:bg-red-700 transition py-5 text-white text-md cursor-pointer">
                             Logout
@@ -48,11 +44,6 @@ export default async function Home() {
                 <Link href="/create" className="flex flex-col items-center text-gray-500 hover:text-[#2A14B4] transition">
                     <Camera size={22} />
                     <span className="text-xs">Create</span>
-                </Link>
-
-                <Link href="/collection" className="flex flex-col items-center text-gray-500 hover:text-[#2A14B4] transition">
-                    <Bookmark size={22} />
-                    <span className="text-xs">Collection</span>
                 </Link>
             </div>
 
